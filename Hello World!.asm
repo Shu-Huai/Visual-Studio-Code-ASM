@@ -10,6 +10,6 @@ BEG:
     MOV DX,OFFSET MESG
     INT 21H
     MOV AH,4CH
-    INT 21H;back to dos
+    INT 21H
 CODE ENDS
 END BEG
