@@ -1,0 +1,8 @@
+MOV A, #05H
+L1:
+SUBA, #01H
+JZ L2
+JMP L1
+L2:
+MOV A, #ffH
+OUT
