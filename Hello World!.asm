@@ -1,4 +1,3 @@
-.386
 DATA SEGMENT USE16
 MESG DB 'Hello World!','$'
 DATA ENDS
