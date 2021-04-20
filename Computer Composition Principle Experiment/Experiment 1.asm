@@ -6,3 +6,4 @@ JMP L1
 L2:
 MOV A, #ffH
 OUT
+END
