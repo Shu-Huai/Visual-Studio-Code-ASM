@@ -14,6 +14,9 @@ CODE SEGMENT
 	       MOV    DL,BL
 	       MOV    AL,0H
 	       DEC    CL
+		   PUSH   CX
+		   SUB    CL,CH
+		   POP    CX
 	       JZ     RETURN
 	       JMP    PRINT
 	RETURN:
@@ -27,7 +30,7 @@ CODE SEGMENT
 	       DEC    CH
 	       JZ     EXIT
 	       JMP    PRINT
-	EXIT:  
+	EXIT:    
 	       MOV    AH,4CH
 	       INT    21H
 CODE ENDS  
