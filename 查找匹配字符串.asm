@@ -1,17 +1,17 @@
 DATA SEGMENT
 	INPUTSENTENCE DB       'Enter sentence:$'
-	INPUTKEYWORD  DB       'Enter keyword:$''
+	INPUTKEYWORD  DB       'Enter keyword:$'
 	MATCHOUTPUT   DB       'Match at location:',?,?,' H of the sentence',13,10,'$'
-	FAILOUTPUT    DB       'No match.',13,10,'$''
-	TEMP          DB       13,10,'$'10,'$'
-	              SENTENCE label   byte label   byte
-	MAXS          DB       99H   99H
-	ACTS          DB       ?     ?
-	SENTE         DB       999h DUP(?)DUP(?)
-	              KEYWORD  label   byte label   byte
-	MAXK          DB       99H   99H
-	ACTK          DB       ?     ?
-	KEYD          DB       999H DUP(?)DUP(?)
+	FAILOUTPUT    DB       'No match.',13,10,'$'
+	TEMP          DB       13,10,'$'
+	              SENTENCE label   byte
+	MAXS          DB       99H
+	ACTS          DB       ?
+	SENTE         DB       999h DUP(?)
+	              KEYWORD  label   byte
+	MAXK          DB       99H
+	ACTK          DB       ?
+	KEYD          DB       999H DUP(?)
 DATA  ENDS
 CODE SEGMENT
 	      ASSUME CS:CODE,DS:DATA,ES:DATA
