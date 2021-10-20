@@ -1,17 +1,17 @@
 DATA SEGMENT
-	INPUTSENTENCE DB       'Enter sentence:$'
 	INPUTKEYWORD  DB       'Enter keyword:$'
+	INPUTSENTENCE DB       'Enter sentence:$'
 	MATCHOUTPUT   DB       'Match at location:',?,?,' H of the sentence',13,10,'$'
 	FAILOUTPUT    DB       'No match.',13,10,'$'
 	TEMP          DB       13,10,'$'
-	              SENTENCE label   byte
-	MAXS          DB       99H
-	ACTS          DB       ?
-	SENTE         DB       999h DUP(?)
 	              KEYWORD  label   byte
 	MAXK          DB       99H
 	ACTK          DB       ?
 	KEYD          DB       999H DUP(?)
+	              SENTENCE label   byte
+	MAXS          DB       99H
+	ACTS          DB       ?
+	SENTE         DB       999H DUP(?)
 DATA  ENDS
 CODE SEGMENT
 	      ASSUME CS:CODE,DS:DATA,ES:DATA
@@ -22,24 +22,24 @@ MAIN PROC    FAR
 	      MOV    AX,DATA
 	      MOV    DS,AX
 	      MOV    ES,AX
-	START:LEA    DX,INPUTSENTENCE
-	      MOV    AH,09
-	      INT    21H
-	      LEA    DX,SENTENCE
-	      MOV    AH,0AH
-	      INT    21H
-	      CMP    ACTS,0
-	      JE     C
-	      LEA    DX,TEMP
-	      MOV    AH,09
-	      INT    21H
-	      LEA    DX,INPUTKEYWORD
+	START:LEA    DX,INPUTKEYWORD
 	      MOV    AH,09
 	      INT    21H
 	      LEA    DX,KEYWORD
 	      MOV    AH,0AH
 	      INT    21H
 	      CMP    ACTK,0
+	      JE     C
+	      LEA    DX,TEMP
+	      MOV    AH,09
+	      INT    21H
+	      LEA    DX,INPUTSENTENCE
+	      MOV    AH,09
+	      INT    21H
+	      LEA    DX,SENTENCE
+	      MOV    AH,0AH
+	      INT    21H
+	      CMP    ACTS,0
 	      JE     BREAK
 	      LEA    DX,TEMP
 	      MOV    AH,09
