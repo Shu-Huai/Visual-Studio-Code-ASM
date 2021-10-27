@@ -15,12 +15,12 @@ DATA SEGMENT
 	ACT2          DB      ?
 	STOKN2        DB      10 DUP(?)
 	NUMBERTABLE   DB      50 DUP(28 DUP(?))
-	NAMECOUNT     dw      0
-	ENDADDR       dw      ?
-	ISSWAPPED     dw      ?
-	TOTALNUMBER   dw      ?
+	NAMECOUNT     DW      0
+	ENDADDR       DW      ?
+	ISSWAPPED     DW      ?
+	TOTALNUMBER   DW      ?
 	SAVENP        DB      28 DUP(?),0DH,0AH,'$'
-	SEARCHADDR    dw      ?
+	SEARCHADDR    DW      ?
 	FLAG          DB      ?
 	FLAGR         DB      ?
 	SHOWTITLE     DB      'Name                Phone',0DH,0AH,'$'
