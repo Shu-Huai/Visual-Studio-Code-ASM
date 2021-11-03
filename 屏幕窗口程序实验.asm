@@ -45,44 +45,53 @@ SHOW MACRO
 	         JLE      ISWIN1
 	         SCROLL   1,18,15,22,65
 	         MOV      DWY,15
-	ISWIN1:  CMP      WINNUMBER,0
+	ISWIN1:  
+	         CMP      WINNUMBER,0
 	         JNZ      SHOWWIN2
-	DISPWIN1:INC      LY
+	DISPWIN1:
+	         INC      LY
 	         CMP      LY,30
 	         JLE      WINOPT1
 	         SCROLL   1,5,10,15,30
 	         MOV      LY,10
-	WINOPT1: SETCURSE LX,LY
+	WINOPT1: 
+	         SETCURSE LX,LY
 	         JMP      INPUT
-	SHOWWIN2:INC      RY
+	SHOWWIN2:
+	         INC      RY
 	         CMP      RY,70
 	         JLE      WINOPT2
 	         SCROLL   1,5,50,15,70
 	         MOV      RY,50
-	WINOPT2: SETCURSE RX,RY
+	WINOPT2: 
+	         SETCURSE RX,RY
 	         JMP      INPUT
 	ENDM
 INPUTCHAR MACRO
-	INPUT:    MOV      AH,0
+	INPUT:    
+	          MOV      AH,0
 	          INT      16H
 	          CMP      AH,4BH
 	          JNZ      NOWIN1
 	          SETCURSE LX,LY
 	          MOV      WINNUMBER,0
 	          JMP      INPUT
-	NOWIN1:   CMP      AH,4DH
+	NOWIN1:   
+	          CMP      AH,4DH
 	          JNZ      NOWIN2
 	          SETCURSE RX,RY
 	          MOV      WINNUMBER,1
 	          JMP      INPUT
-	NOWIN2:   CMP      AH,01
+	NOWIN2:   
+	          CMP      AH,01
 	          JNZ      C1
 	          MOV      AH,4CH
 	          INT      21h
 	ENDM
 CODE SEGMENT
 	      ASSUME    CS:CODE,DS:DATA
-	START:MAIN      PROC	FAR
+	START:
+MAIN PROC	FAR
 	      PUSH      DS
 	      SUB       AX,AX
 	      PUSH      AX
@@ -94,11 +103,12 @@ CODE SEGMENT
 	      SCROLL    5,18,15,22,65
 	      SETCURSE  15,50
 	      INPUTCHAR
-	C1:   MOV       AH,0AH
+	C1:   
+	      MOV       AH,0AH
 	      MOV       BH,0
 	      MOV       CX,1
 	      INT       10H
 	      SHOW
 MAIN ENDP
 CODE ENDS 
-		END START
+END START

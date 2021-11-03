@@ -36,7 +36,8 @@ MAIN PROC    FAR
 	           MOV    AH,09
 	           INT    21H
 	           MOV    BX,0
-	INPUTCHAR: MOV    AH,1
+	INPUTCHAR: 
+	           MOV    AH,1
 	           INT    21H
 	           SUB    AL,30h
 	           JL     NOINPUT
@@ -49,11 +50,13 @@ MAIN PROC    FAR
 	           XCHG   AX,BX
 	           ADD    BX,AX
 	           JMP    INPUTCHAR
-	NOINPUT:   MOV    TOTALNUMBER,BX
+	NOINPUT:   
+	           MOV    TOTALNUMBER,BX
 	           LEA    DX,CRLF
 	           MOV    AH,09
 	           INT    21H
-	A10:       LEA    DX,NAMEMESSAGE
+	A10:       
+	           LEA    DX,NAMEMESSAGE
 	           MOV    AH,09
 	           INT    21H
 	           CALL   INPUTNAME
@@ -70,7 +73,8 @@ MAIN PROC    FAR
 	           CMP    NAMECOUNT,BX
 	           JNZ    A10
 	           CALL   NAMESORT
-	A20:       LEA    DX,SEARCHMESSAGE
+	A20:       
+	           LEA    DX,SEARCHMESSAGE
 	           MOV    AH,09
 	           INT    21H
 	           MOV    AH,08
@@ -80,13 +84,16 @@ MAIN PROC    FAR
 	           CMP    AL,'n'
 	           JZ     EXIT
 	           JMP    A20
-	A30:       MOV    AH,09
+	A30:       
+	           MOV    AH,09
 	           LEA    DX,NMESSAGE
 	           INT    21H
 	           CALL   INPUTNAME
-	A40:       CALL   NAMESEARCH
+	A40:       
+	           CALL   NAMESEARCH
 	           JMP    A20
-	EXIT:      MOV    AX,4C00H
+	EXIT:      
+	           MOV    AX,4C00H
 	           INT    21H
 MAIN ENDP
 INPUTNAME PROC  NEAR
@@ -100,7 +107,8 @@ INPUTNAME PROC  NEAR
 	           MOV    BL,ACT1
 	           MOV    CX,21
 	           SUB    CX,BX
-	B10:       MOV    STOKN1[BX],' '
+	B10:       
+	           MOV    STOKN1[BX],' '
 	           INC    BX
 	           LOOP   B10
 	           RET
@@ -122,7 +130,8 @@ INPUTPHONE PROC   NEAR
 	           MOV    BL,ACT2
 	           MOV    CX,9
 	           SUB    CX,BX
-	C10:       MOV    STOKN2[BX],' '
+	C10:       
+	           MOV    STOKN2[BX],' '
 	           INC    BX
 	           LOOP   C10
 	           RET
@@ -136,9 +145,11 @@ INPHONE ENDP
 NAMESORT PROC NEAR
 	           SUB    DI,28
 	           MOV    ENDADDR,DI
-	C1:        MOV    ISSWAPPED,0
+	C1:        
+	           MOV    ISSWAPPED,0
 	           LEA    SI,NUMBERTABLE
-	C2:        MOV    CX,20
+	C2:        
+	           MOV    CX,20
 	           MOV    DI,SI
 	           ADD    DI,28
 	           MOV    AX,DI
@@ -167,7 +178,8 @@ NAMESORT ENDP
 NAMESEARCH PROC NEAR
 	           LEA    BX,NUMBERTABLE
 	           MOV    FLAG,0
-	D:         MOV    CX,20
+	D:         
+	           MOV    CX,20
 	           LEA    SI,STOKN1
 	           MOV    DI,BX
 	           REPZ   CMPSB
@@ -178,10 +190,12 @@ NAMESEARCH PROC NEAR
 	           SUB    FLAG,0
 	           JZ     NOTFOUND
 	           JMP    DEXIT
-	NOTFOUND:  LEA    DX,FAILMESSAGE
+	NOTFOUND:  
+	           LEA    DX,FAILMESSAGE
 	           MOV    AH,09
 	           INT    21H
-	D2:        MOV    SEARCHADDR,BX
+	D2:        
+	           MOV    SEARCHADDR,BX
 	           INC    FLAG
 	           CALL   PRINT
 	           ADD    BX,28
@@ -194,7 +208,8 @@ NAMESEARCH ENDP
 PRINT PROC  NEAR
 	           SUB    FLAG,0
 	           JZ     NO
-	P10:       MOV    AH,09
+	P10:       
+	           MOV    AH,09
 	           LEA    DX,SHOWTITLE
 	           INT    21H
 	           MOV    CX,28
@@ -205,10 +220,12 @@ PRINT PROC  NEAR
 	           MOV    AH,09
 	           INT    21H
 	           JMP    FEXIT
-	NO:        LEA    DX,FAILMESSAGE
+	NO:        
+	           LEA    DX,FAILMESSAGE
 	           MOV    AH,09
 	           INT    21H
-	FEXIT:     RET
+	FEXIT:     
+	           RET
 PRINT ENDP
 CODE ENDS
 END MAIN    

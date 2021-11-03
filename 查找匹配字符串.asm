@@ -22,7 +22,8 @@ MAIN PROC    FAR
 	      MOV    AX,DATA
 	      MOV    DS,AX
 	      MOV    ES,AX
-	START:LEA    DX,INPUTKEYWORD
+	START:
+	      LEA    DX,INPUTKEYWORD
 	      MOV    AH,09
 	      INT    21H
 	      LEA    DX,KEYWORD
@@ -52,7 +53,8 @@ MAIN PROC    FAR
 	      MOV    CL,ACTS
 	      SUB    CL,ACTK
 	      INC    CX
-	COMP: PUSH   CX
+	COMP: 
+	      PUSH   CX
 	      PUSH   DI
 	      MOV    CL,ACTK
 	      REPZ   CMPSB
@@ -66,8 +68,10 @@ MAIN PROC    FAR
 	      MOV    AH,09
 	      INT    21H
 	      JMP    BREAK
-	C:    JMP    BREAK
-	FIND: POP    DI
+	C:    
+	      JMP    BREAK
+	FIND: 
+	      POP    DI
 	      POP    CX
 	      SUB    DI,BX
 	      MOV    BX,DI
@@ -79,15 +83,18 @@ MAIN PROC    FAR
 	      ADD    AH,48
 	      CMP    AH,58
 	      JAE    A
-	NEXT: MOV    [MATCHOUTPUT+18],AL
+	NEXT: 
+	      MOV    [MATCHOUTPUT+18],AL
 	      MOV    [MATCHOUTPUT+19],AH
 	      LEA    DX,MATCHOUTPUT
 	      MOV    AH,09
 	      INT    21H
 	      JMP    START
-	A:    ADD    AH,7
+	A:    
+	      ADD    AH,7
 	      JMP    NEXT
-	BREAK:RET
+	BREAK:
+	      RET
 MAIN ENDP
 CODE  ENDS 
 END   MAIN
