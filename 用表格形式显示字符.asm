@@ -1,12 +1,10 @@
 CODE SEGMENT
 	       ASSUME CS:CODE
-	START: 
-	       MOV    DL,0FH
+	START: MOV    DL,0FH
 	       MOV    AH,2H
 	       MOV    CL,10H
 	       MOV    CH,0FH
-	PRINT: 
-	       INC    DL
+	PRINT: INC    DL
 	       INT    21H
 	       MOV    BL,DL
 	       MOV    DL,0H
@@ -16,8 +14,7 @@ CODE SEGMENT
 	       DEC    CL
 	       JZ     RETURN
 	       JMP    PRINT
-	RETURN:
-	       MOV    CL,10H
+	RETURN:MOV    CL,10H
 	       MOV    DH,DL
 	       MOV    DL,0DH
 	       INT    21H
@@ -27,8 +24,7 @@ CODE SEGMENT
 	       DEC    CH
 	       JZ     EXIT
 	       JMP    PRINT
-	EXIT:  
-	       MOV    AH,4CH
+	EXIT:  MOV    AH,4CH
 	       INT    21H
 CODE ENDS  
 END START 
